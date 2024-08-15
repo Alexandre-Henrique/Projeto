@@ -1,9 +1,24 @@
-const mongoose = require ('mongoose'); //importa o mongoose para interagir com o MongoDB
+const { DataTypes } = require('sequelize');  // Importa DataTypes, que define os tipos de dados das colunas no banco de dados
+const sequelize = require('../config/database');  // Importa a configuração do banco de dados que criado
 
-const TaskSchema = new mongoose.Schema({ // define esquema para uma tarefa, especificação de campos e seus tipos
-    titulo: {type: String, required: true},
-    descricao: {type: String},
-    status: {type: String, default: 'pendente'},
-    data: {type: Date, default: Date.now},
+const Task = sequelize.define('Task', {  // Define um modelo chamado 'Task' que representa a tabela 'tasks' no banco de dados
+    title: {
+        type: DataTypes.STRING,  // A coluna 'title' será uma string
+        allowNull: false  // Esta coluna é obrigatória, não pode ser nula
+    },
+    description: {
+        type: DataTypes.TEXT,  // A coluna 'description' será um texto mais longo
+    },
+    status: {
+        type: DataTypes.STRING,  // A coluna 'status' será uma string
+        defaultValue: 'pendente'  // Se não for informado, o status padrão será 'pendente'
+    },
+    date: {
+        type: DataTypes.DATE,  // A coluna 'date' será uma data
+        defaultValue: DataTypes.NOW  // Se não for informada, a data padrão será a data e hora atuais
+    }
+}, {
+    tableName: 'tasks'  // Especifica que o nome da tabela no banco de dados será 'tasks'
 });
-module.exports	=  mongoose.model('task', TaskSchema); // exporta o modelo 'task' e permite interagir com a coleção 'tasks' no Mongo
+
+module.exports = Task;  // Exporta o modelo Task para ser utilizado em outras partes do projeto

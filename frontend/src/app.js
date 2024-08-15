@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';  // Importa o React e o hook useState para gerenciar estado
+import TaskList from './components/TaskList';  // Importa o componente TaskList que exibe a lista de tarefas
+import TaskForm from './components/TaskForm';  // Importa o componente TaskForm que permite adicionar novas tarefas
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [tasks, setTasks] = useState([]);  // Define um estado para armazenar a lista de tarefas
 
-export default App;
+    const handleTaskAdded = (newTask) => {
+        setTasks([...tasks, newTask]);  // Atualiza o estado 'tasks' adicionando a nova tarefa à lista existente
+    };
+
+    return (
+        <div>
+            <h1>Gerenciador de Tarefas</h1> 
+            <TaskForm onTaskAdded={handleTaskAdded} /> 
+            <TaskList tasks={tasks} />
+        </div>
+    );
+};
+
+export default App;  // Exporta o componente App como padrão
