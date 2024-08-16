@@ -3,42 +3,227 @@ body{
     margin: 0;
     padding: 0;
     color: #333;
+    
 }
 
-header{
-    background-color: #0044cc;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+header {
+    text-align: center; /* Centraliza a imagem no header */
+    padding:  0; /* Espaçamento ao redor da imagem */
+    position: relative;
 }
 
-nav ul{
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li{
-    display: inline;
-    margin: 0 10px;
-}
-
-nav ul li a{
-    color: white;
-    text-decoration: none;
-}
-
-section{
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-}
 
 footer{
-    background-color: #0044cc;
-    color: white;
+    background-color: #f58634;
+    color: #ffffff;
     text-align: center;
     padding: 10px 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+
 }
+
+/* Estilo básico do menu de navegação */
+.navbar{
+    background-color: #f58634; /* Cor de fundo da navbar */
+    padding: 15px;
+}
+
+.navbar .navbar-brand img {
+    height: 40px; /* Ajuste a altura do logotipo conforme necessário */
+    max-width: 100%; /* Garante que o logotipo não ultrapasse a largura do contêiner */
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #fff; /* Cor do texto das opções de navegação */
+    margin-right: 15px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Animação ao passar o mouse sobre o link */
+.navbar .navbar-nav .nav-link::before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #fff; /* Cor da animação */
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar .navbar-nav .nav-link:hover::before {
+    visibility: visible;
+    width: 100%;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #000000; /* Cor do texto ao passar o mouse */
+}
+
+/* Transições suaves */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1); /* Cor do botão de toggler */
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler-icon {
+    background-color: #fff; /* Cor do ícone do toggler */
+}
+
+.navbar-toggler:hover {
+    background-color: #0069d9; /* Cor ao passar o mouse */
+}
+
+
+
+
+/* Estilizando o carrossel */
+.carousel-inner img {
+    height: 500px; /* Ajusta a altura das imagens do carrossel */
+}
+
+.carousel-caption h5 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    font-size: 40px;
+}
+
+/* Estilo dos cards dos cursos */
+.curso-card {
+    border: 1px solid #ddd; /* Borda do card */
+    border-radius: 8px; /* Cantos arredondados */
+    overflow: hidden; /* Evita que as imagens ultrapassem o card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff; /* Cor de fundo do card */
+}
+
+.curso-card:hover {
+    transform: scale(1.05); /* Zoom ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+}
+
+.curso-card img {
+    height: 200px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Mantém a proporção da imagem */
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem; /* Tamanho da fonte do título */
+    color: #007bff; /* Cor do título */
+    margin-bottom: 15px; /* Espaçamento abaixo do título */
+}
+
+.card-text {
+    color: #333; /* Cor do texto */
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 767px) {
+    .curso-card {
+        margin-bottom: 20px; /* Espaçamento entre os cards */
+    }
+    
+    .curso-card img {
+        height: auto; /* Ajusta a altura da imagem para o tamanho do card */
+    }
+}
+
+
+/* Estilo para a seção dos blocos do menu */
+#menu-blocos {
+    background-color: #007bff; /* Cor de fundo da seção */
+    padding: 20px 0; /* Espaçamento acima e abaixo dos blocos */
+}
+
+/* Estilo para cada bloco do menu */
+.bloco-menu {
+    text-align: center; /* Centraliza o texto dentro do bloco */
+    padding: 20px; /* Espaçamento interno do bloco */
+    background-color: #ffffff; /* Cor de fundo dos blocos */
+    border-radius: 8px; /* Bordas arredondadas */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Transição suave para animação */
+    margin-bottom: 20px; /* Espaçamento entre blocos em telas menores */
+}
+
+/* Estilo para o link dentro dos blocos */
+.opcao-menu {
+    color: #f58634; /* Cor do texto */
+    font-weight: bold; /* Texto em negrito */
+    text-decoration: none; /* Remove sublinhado */
+    display: block; /* Torna o link um bloco */
+    height: 100%; /* Faz o link ocupar todo o bloco */
+    line-height: 80px; /* Centraliza verticalmente o texto */
+}
+
+/* Animação ao passar o mouse sobre o bloco */
+.bloco-menu:hover {
+    transform: scale(1.05); /* Aumenta ligeiramente o bloco */
+    background-color: #f58634; /* Muda a cor de fundo do bloco */
+}
+
+/* Muda a cor do texto ao passar o mouse */
+.bloco-menu:hover .opcao-menu {
+    color: #ffffff; /* Cor do texto ao passar o mouse */
+}
+
+/* Estilo para a seção da galeria de fotos */
+#galeria-fotos {
+    padding: 40px 0;
+    background-color: #f8f9fa; /* Cor de fundo */
+}
+
+/* Estilo para os itens de foto */
+.foto-item {
+    text-align: center; /* Centraliza o conteúdo */
+    margin-bottom: 30px; /* Espaçamento entre as fotos */
+}
+
+/* Container da foto para controle de layout */
+.foto-container {
+    overflow: hidden; /* Esconde qualquer parte da imagem que ultrapasse o container */
+    border-radius: 8px; /* Bordas arredondadas */
+    width: 100%; /* Largura máxima da imagem */
+    max-width: 300px; /* Largura máxima da imagem */
+}
+
+/* Estilo para as fotos */
+.foto-galeria {
+    width: 100%; /* Faz a foto ocupar toda a largura disponível */
+    height: auto; /* Mantém a proporção da imagem */
+    transition: transform 0.3s ease, filter 0.3s ease; /* Transição suave para a animação */
+}
+
+/* Estilo para os títulos das fotos */
+.titulo-foto {
+    font-size: 18px; /* Tamanho da fonte do título */
+    margin-top: 15px; /* Espaçamento acima do título */
+    font-weight: bold; /* Texto em negrito */
+    color: #007bff; /* Cor do texto do título */
+}
+
+/* Estilo para as descrições das fotos */
+.descricao-foto {
+    font-size: 14px; /* Tamanho da fonte da descrição */
+    color: #666666; /* Cor do texto da descrição */
+}
+
+/* Animação ao passar o mouse sobre a foto */
+.foto-container:hover .foto-galeria {
+    transform: scale(1.1); /* Aumenta ligeiramente a foto */
+    filter: brightness(0.8); /* Escurece ligeiramente a foto */
+}
+
+
+
+
