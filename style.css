@@ -61,7 +61,7 @@ footer{
 }
 
 .navbar .navbar-nav .nav-link:hover {
-    color: #000000; /* Cor do texto ao passar o mouse */
+    color: #0077ff; /* Cor do texto ao passar o mouse */
 }
 
 /* Transições suaves */
@@ -75,7 +75,7 @@ footer{
 }
 
 .navbar-toggler:hover {
-    background-color: #0069d9; /* Cor ao passar o mouse */
+    background-color: #f58634;/* Cor ao passar o mouse */
 }
 
 
@@ -115,17 +115,19 @@ footer{
 }
 
 .card-body {
-    padding: 20px;
+    padding: 10px;
 }
 
 .card-title {
     font-size: 1.25rem; /* Tamanho da fonte do título */
-    color: #007bff; /* Cor do título */
+    color: #0077ff; /* Cor do título */
     margin-bottom: 15px; /* Espaçamento abaixo do título */
+    text-align: center;
 }
 
 .card-text {
     color: #333; /* Cor do texto */
+    text-align: center;
 }
 
 /* Ajustes para telas menores */
@@ -142,7 +144,7 @@ footer{
 
 /* Estilo para a seção dos blocos do menu */
 #menu-blocos {
-    background-color: #007bff; /* Cor de fundo da seção */
+    background-color: #ffffff; /* Cor de fundo da seção */
     padding: 20px 0; /* Espaçamento acima e abaixo dos blocos */
 }
 
@@ -158,7 +160,7 @@ footer{
 
 /* Estilo para o link dentro dos blocos */
 .opcao-menu {
-    color: #f58634; /* Cor do texto */
+    color: #0077ff; /* Cor do texto */
     font-weight: bold; /* Texto em negrito */
     text-decoration: none; /* Remove sublinhado */
     display: block; /* Torna o link um bloco */
@@ -209,7 +211,7 @@ footer{
     font-size: 18px; /* Tamanho da fonte do título */
     margin-top: 15px; /* Espaçamento acima do título */
     font-weight: bold; /* Texto em negrito */
-    color: #007bff; /* Cor do texto do título */
+    color: #0077ff;/* Cor do texto do título */
 }
 
 /* Estilo para as descrições das fotos */
@@ -222,6 +224,33 @@ footer{
 .foto-container:hover .foto-galeria {
     transform: scale(1.1); /* Aumenta ligeiramente a foto */
     filter: brightness(0.8); /* Escurece ligeiramente a foto */
+}
+
+
+/* Estilização específica para a página de descrição dos cursos */
+.curso-img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 100%;
+}
+
+.curso-titulo {
+    font-size: 2rem;
+    color: #0077ff;
+    margin-bottom: 20px;
+}
+
+.curso-descricao {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Estilização do footer */
+.curso-footer {
+    background-color: #e9ecef;
+    color: #6c757d;
+    padding: 10px;
 }
 
 
