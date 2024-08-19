@@ -74,3 +74,43 @@ app.get('/cursos/:id', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
+
+
+// Rota para a página da instituição
+app.get('/instituicao', (req, res) => {
+    // Consulta ao banco de dados
+    connection.query('SELECT * FROM instituicao LIMIT 1', (err, results) => {
+      if (err) {
+        console.error('Erro ao consultar o banco de dados: ' + err.stack);
+        res.status(500).send('Erro interno do servidor');
+        return;
+      }
+      
+      if (results.length > 0) {
+        const instituicao = results[0];
+        res.send(`
+          <html lang="pt-BR">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>A Instituição - FATECE</title>
+              <link rel="stylesheet" href="/instituicao.css">
+          </head>
+          <body>
+              <div class="instituicao-container">
+                  <h1>Sobre a FATECE</h1>
+                  <h2>História</h2>
+                  <p>${instituicao.historia}</p>
+                  <h2>Missão</h2>
+                  <p>${instituicao.missao}</p>
+                  <a href="/">Voltar para a página inicial</a>
+              </div>
+          </body>
+          </html>
+        `);
+      } else {
+        res.status(404).send('Informações sobre a instituição não encontradas');
+      }
+    });
+  });
+  
