@@ -70,11 +70,6 @@ app.get('/cursos/:id', (req, res) => {
   });
 });
 
-// Iniciar o servidor
-app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
-});
-
 
 // Rota para a página da instituição
 app.get('/instituicao', (req, res) => {
@@ -114,41 +109,97 @@ app.get('/instituicao', (req, res) => {
     });
   });
 
-  // Rota para a página da infraestrutura
+// Rota para a página de infraestrutura
 app.get('/infraestrutura', (req, res) => {
-    // Consulta ao banco de dados
-    connection.query('SELECT * FROM infraestrutura LIMIT 1', (err, results) => {
-      if (err) {
-        console.error('Erro ao consultar o banco de dados: ' + err.stack);
-        res.status(500).send('Erro interno do servidor');
-        return;
-      }
-      
-      if (results.length > 0) {
-        const instituicao = results[0];
-        res.send(`
-          <html lang="pt-BR">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>A Instituição - FATECE</title>
-              <link rel="stylesheet" href="/instituicao.css">
-          </head>
-          <body>
-              <div class="instituicao-container">
-                  <h1>Sobre a FATECE</h1>
-                  <h2>História</h2>
-                  <p>${instituicao.historia}</p>
-                  <h2>Missão</h2>
-                  <p>${instituicao.missao}</p>
-                  <a href="/">Voltar para a página inicial</a>
+  connection.query('SELECT * FROM infraestrutura', (err, results) => {
+    if (err) {
+      console.error('Erro ao consultar o banco de dados: ' + err.stack);
+      res.status(500).send('Erro interno do servidor');
+      return;
+    }
+    
+    res.send(`
+      <!DOCTYPE html>
+      <html lang="pt-BR">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Infraestrutura</title>
+          <link rel="stylesheet" href="/infraestrutura.css">
+      </head>
+      <body>
+
+          <main>
+              <h1>Infraestrutura da FATECE</h1>
+              <div class="infraestrutura-container">
+                  ${results.map(imagem => `
+                    <div class="imagem-item" onclick="openModal('/img/${imagem.imagem}')">
+                        <img src="/img/${imagem.imagem}" alt="Infraestrutura">
+                    </div>
+                  `).join('')}
               </div>
-          </body>
-          </html>
-        `);
-      } else {
-        res.status(404).send('Informações sobre a instituição não encontradas');
-      }
-    });
+          </main>
+          
+          <footer>
+              <a href="/">Voltar para a página inicial</a>
+          </footer>
+
+          <!-- Modal -->
+          <div id="modal" class="modal">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <div class="modal-content">
+                  <img id="modal-image" src="" alt="Imagem do Modal">
+                  <span class="prev" onclick="prevImage()">&lt;</span>
+                  <span class="next" onclick="nextImage()">&gt;</span>
+  
+
+          <script>
+            let currentImageIndex = 0;
+            const images = [];
+
+            function openModal(src) {
+                document.getElementById('modal').classList.add('show');
+                document.getElementById('modal-image').src = src;
+                currentImageIndex = images.indexOf(src);
+                updateNavigation();
+            }
+
+            function closeModal() {
+                document.getElementById('modal').classList.remove('show');
+            }
+
+            function prevImage() {
+                if (images.length > 0) {
+                    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                    document.getElementById('modal-image').src = images[currentImageIndex];
+                }
+            }
+
+            function nextImage() {
+                if (images.length > 0) {
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    document.getElementById('modal-image').src = images[currentImageIndex];
+                }
+            }
+
+            function updateNavigation() {
+                images.length = 0;
+                document.querySelectorAll('.imagem-item img').forEach(img => {
+                    images.push(img.src);
+                });
+            }
+          </script>
+      </body>
+      </html>
+    `);
   });
+});
+
+
+// Iniciar o servidor
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
+});
+
+
   

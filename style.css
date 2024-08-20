@@ -1,265 +1,328 @@
-body, html{
-    font-family: Arial, sans-serif;
+/* Reset básico */
+body, html {
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
     color: #333;
     height: 100%;
-    
+    background-color: #f5f5f5;
 }
 
+/* Estilo do header */
 header {
-    text-align: center; /* Centraliza a imagem no header */
-    padding:  0; /* Espaçamento ao redor da imagem */
     position: relative;
-}
-
-
-footer{
-    background-color: #f58634;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    bottom: 0;
     width: 100%;
-
-
 }
 
-/* Estilo básico do menu de navegação */
-.navbar{
-    background-color: #f58634; /* Cor de fundo da navbar */
-    padding: 15px;
+/* Navbar */
+.navbar {
+    background-color: #0077ff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: rgba(0, 119, 255, 0.9);
 }
 
 .navbar .navbar-brand img {
-    height: 40px; /* Ajuste a altura do logotipo conforme necessário */
-    max-width: 100%; /* Garante que o logotipo não ultrapasse a largura do contêiner */
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.navbar .navbar-brand img:hover {
+    transform: scale(1.1);
+}
+
+.navbar .navbar-nav {
+    display: flex;
+    align-items: center;
 }
 
 .navbar .navbar-nav .nav-link {
-    color: #fff; /* Cor do texto das opções de navegação */
-    margin-right: 15px;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
     position: relative;
-    transition: color 0.3s ease;
+    transition: color 0.3s, padding-bottom 0.3s;
 }
 
-/* Animação ao passar o mouse sobre o link */
-.navbar .navbar-nav .nav-link::before {
+.navbar .navbar-nav .nav-link::after {
     content: '';
     position: absolute;
-    width: 0%;
-    height: 2px;
+    width: 0;
+    height: 3px;
     bottom: -5px;
     left: 0;
-    background-color: #fff; /* Cor da animação */
-    visibility: hidden;
-    transition: all 0.3s ease-in-out;
+    background-color: #f58634;
+    transition: width 0.3s;
 }
 
-.navbar .navbar-nav .nav-link:hover::before {
-    visibility: visible;
+.navbar .navbar-nav .nav-link:hover::after {
     width: 100%;
 }
 
 .navbar .navbar-nav .nav-link:hover {
-    color: #0077ff; /* Cor do texto ao passar o mouse */
+    color: #f58634;
+    padding-bottom: 5px;
 }
 
-/* Transições suaves */
-.navbar-toggler {
-    border: none; /* Remove a borda padrão */
-    background-color: transparent; /* Cor de fundo transparente */
+/* Estilo do carrossel */
+.carousel {
+    position: relative;
+    margin-top: 80px; /* Espaço para não sobrepor a navbar */
 }
 
-.navbar-toggler-icon {
-    display: inline-block; /* Exibe o ícone como bloco */
-    width: 30px; /* Largura dos riscos */
-    height: 20px; /* Altura do ícone */
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 30 20"><path stroke="%23000" stroke-width="2" d="M0 5h30M0 10h30M0 15h30"/></svg>') no-repeat center center; /* Adiciona os riscos como fundo */
-}
-
-.navbar-toggler:hover {
-    background-color: #f58634;/* Cor ao passar o mouse */
-}
-
-
-
-
-
-
-/* Estilizando o carrossel */
 .carousel-inner img {
-    height: 500px; /* Ajusta a altura das imagens do carrossel */
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
 }
 
 .carousel-caption h5 {
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
 }
 
 .carousel-caption p {
-    font-size: 40px;
+    font-size: 1.75rem;
+    color: #f58634;
 }
 
-/* Estilo dos cards dos cursos */
+/* Cards de cursos */
 .curso-card {
-    border: 1px solid #ddd; /* Borda do card */
-    border-radius: 8px; /* Cantos arredondados */
-    overflow: hidden; /* Evita que as imagens ultrapassem o card */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #fff; /* Cor de fundo do card */
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s;
+    background-color: #fff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
 }
 
 .curso-card:hover {
-    transform: scale(1.05); /* Zoom ao passar o mouse */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+    transform: translateY(-15px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .curso-card img {
-    height: 200px; /* Altura fixa para as imagens */
-    object-fit: cover; /* Mantém a proporção da imagem */
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+
+.curso-card:hover img {
+    transform: scale(1.1);
 }
 
 .card-body {
-    padding: 10px;
+    padding: 20px;
 }
 
 .card-title {
-    font-size: 1.25rem; /* Tamanho da fonte do título */
-    color: #0077ff; /* Cor do título */
-    margin-bottom: 15px; /* Espaçamento abaixo do título */
-    text-align: center;
+    font-size: 1.5rem;
+    color: #0077ff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .card-text {
-    color: #333; /* Cor do texto */
-    text-align: center;
-}
-
-/* Ajustes para telas menores */
-@media (max-width: 767px) {
-    .curso-card {
-        margin-bottom: 20px; /* Espaçamento entre os cards */
-    }
-    
-    .curso-card img {
-        height: auto; /* Ajusta a altura da imagem para o tamanho do card */
-    }
-}
-
-
-/* Estilo para a seção dos blocos do menu */
-#menu-blocos {
-    background-color: #ffffff; /* Cor de fundo da seção */
-    padding: 20px 0; /* Espaçamento acima e abaixo dos blocos */
-}
-
-/* Estilo para cada bloco do menu */
-.bloco-menu {
-    text-align: center; /* Centraliza o texto dentro do bloco */
-    padding: 20px; /* Espaçamento interno do bloco */
-    background-color: #ffffff; /* Cor de fundo dos blocos */
-    border-radius: 8px; /* Bordas arredondadas */
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Transição suave para animação */
-    margin-bottom: 20px; /* Espaçamento entre blocos em telas menores */
-}
-
-/* Estilo para o link dentro dos blocos */
-.opcao-menu {
-    color: #0077ff; /* Cor do texto */
-    font-weight: bold; /* Texto em negrito */
-    text-decoration: none; /* Remove sublinhado */
-    display: block; /* Torna o link um bloco */
-    height: 100%; /* Faz o link ocupar todo o bloco */
-    line-height: 80px; /* Centraliza verticalmente o texto */
-}
-
-/* Animação ao passar o mouse sobre o bloco */
-.bloco-menu:hover {
-    transform: scale(1.05); /* Aumenta ligeiramente o bloco */
-    background-color: #f58634; /* Muda a cor de fundo do bloco */
-}
-
-/* Muda a cor do texto ao passar o mouse */
-.bloco-menu:hover .opcao-menu {
-    color: #ffffff; /* Cor do texto ao passar o mouse */
-}
-
-/* Estilo para a seção da galeria de fotos */
-#galeria-fotos {
-    padding: 40px 0;
-    background-color: #f8f9fa; /* Cor de fundo */
-}
-
-/* Estilo para os itens de foto */
-.foto-item {
-    text-align: center; /* Centraliza o conteúdo */
-    margin-bottom: 30px; /* Espaçamento entre as fotos */
-}
-
-/* Container da foto para controle de layout */
-.foto-container {
-    overflow: hidden; /* Esconde qualquer parte da imagem que ultrapasse o container */
-    border-radius: 8px; /* Bordas arredondadas */
-    width: 100%; /* Largura máxima da imagem */
-    max-width: 300px; /* Largura máxima da imagem */
-}
-
-/* Estilo para as fotos */
-.foto-galeria {
-    width: 100%; /* Faz a foto ocupar toda a largura disponível */
-    height: auto; /* Mantém a proporção da imagem */
-    transition: transform 0.3s ease, filter 0.3s ease; /* Transição suave para a animação */
-}
-
-/* Estilo para os títulos das fotos */
-.titulo-foto {
-    font-size: 18px; /* Tamanho da fonte do título */
-    margin-top: 15px; /* Espaçamento acima do título */
-    font-weight: bold; /* Texto em negrito */
-    color: #0077ff;/* Cor do texto do título */
-}
-
-/* Estilo para as descrições das fotos */
-.descricao-foto {
-    font-size: 14px; /* Tamanho da fonte da descrição */
-    color: #666666; /* Cor do texto da descrição */
-}
-
-/* Animação ao passar o mouse sobre a foto */
-.foto-container:hover .foto-galeria {
-    transform: scale(1.1); /* Aumenta ligeiramente a foto */
-    filter: brightness(0.8); /* Escurece ligeiramente a foto */
-}
-
-
-/* Estilização específica para a página de descrição dos cursos */
-.curso-img {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    max-width: 100%;
-}
-
-.curso-titulo {
-    font-size: 2rem;
-    color: #0077ff;
-    margin-bottom: 20px;
-}
-
-.curso-descricao {
-    font-size: 1.1rem;
+    color: #666;
+    font-size: 1rem;
     line-height: 1.6;
-    margin-bottom: 20px;
 }
 
-/* Estilização do footer */
-.curso-footer {
-    background-color: #e9ecef;
-    color: #6c757d;
-    padding: 10px;
+/* Menu de blocos */
+#menu-blocos {
+    background-color: #fff;
+    padding: 60px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
+.bloco-menu {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    width: 300px;
+    transition: transform 0.4s, background-color 0.4s, box-shadow 0.4s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
 
+.bloco-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #0077ff;
+    transform: translateY(-100%);
+    transition: transform 0.4s;
+}
 
+.bloco-menu:hover::before {
+    transform: translateY(0);
+}
 
+.bloco-menu:hover {
+    transform: scale(1.05);
+    background-color: #0077ff;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.opcao-menu {
+    color: #0077ff;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    line-height: 80px;
+    height: 80px;
+    transition: color 0.4s, font-size 0.4s;
+}
+
+.bloco-menu:hover .opcao-menu {
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+/* Adicionando uma borda com sombra e um efeito de transição ao passar o mouse */
+.bloco-menu img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.bloco-menu:hover img {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.bloco-menu h3 {
+    color: #0077ff;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.bloco-menu p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Seção de galeria de fotos */
+#galeria-fotos {
+    padding: 60px 20px;
+    background-color: #fff;
+}
+
+.foto-item {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.foto-container {
+    overflow: hidden;
+    border-radius: 15px;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.foto-galeria {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    transition: transform 0.4s, filter 0.4s;
+}
+
+.foto-container:hover .foto-galeria {
+    transform: scale(1.1);
+    filter: brightness(0.75);
+}
+
+.titulo-foto {
+    font-size: 1.25rem;
+    color: #0077ff;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.descricao-foto {
+    font-size: 0.95rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Estilo do footer */
+footer {
+    background-color: #0077ff;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    z-index: 1000;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #f58634;
+}
+
+/* Estilos de responsividade */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .navbar .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar .navbar-nav .nav-link {
+        margin: 10px 0;
+    }
+
+    .curso-card img {
+        height: auto;
+    }
+
+    #menu-blocos {
+        padding: 40px 10px;
+    }
+
+    .bloco-menu {
+        width: 90%;
+        max-width: 300px;
+    }
+}
